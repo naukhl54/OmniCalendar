@@ -1,4 +1,4 @@
-# OmniCalendar 📅🎨 - Kalender Kartun Nuansa Netral
+# OmniCalendar 📅🎨 
 
 Aplikasi kalender dan perencana jadwal pribadi dengan tampilan **kalender meja kartun estetik** (*cozy cartoon desk planner*) yang bernuansa netral, hangat, dan ramah pengguna. 
 
