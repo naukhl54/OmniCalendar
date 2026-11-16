@@ -1,0 +1,1146 @@
+:root {
+  /* Nuansa Netral Hangat & Meja Belajar Kartun */
+  --desk-wood: #ebe4d8;
+  --desk-texture: #dfd7c9;
+  --paper-cream: #fffdfa;
+  --paper-edge: #f5eedf;
+  
+  /* Tinta Kartun & Garis */
+  --ink: #2b3036;
+  --ink-muted: #5f666d;
+  --ink-light: #9aa2aa;
+  
+  --border-thick: 2.5px solid var(--ink);
+  --border-thin: 1.5px solid var(--ink);
+  
+  --shadow-cartoon: 3px 3px 0px var(--ink);
+  --shadow-cartoon-lg: 6px 6px 0px var(--ink);
+  --shadow-cartoon-sm: 2px 2px 0px var(--ink);
+
+  /* Aksen Netral Kalender */
+  --accent-leather: #c48b59;
+  --accent-stand: #d9cab3;
+  --accent-primary: #d4a373;
+  --accent-primary-hover: #c49261;
+
+  /* Kategori Warna Netral-Pastel */
+  --cat-work: #6b8ea4;       /* Slate Denim */
+  --cat-personal: #7fa988;   /* Sage Green */
+  --cat-health: #cf808b;     /* Dusty Rose */
+  --cat-study: #d69f64;      /* Warm Caramel */
+  --cat-urgent: #c95a5a;     /* Terracotta Red */
+  --cat-family: #9885a8;     /* Muted Mauve */
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
+  --radius-full: 9999px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--desk-wood);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  background-image: 
+    radial-gradient(var(--desk-texture) 18%, transparent 19%),
+    radial-gradient(var(--desk-texture) 18%, transparent 19%);
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 14px;
+}
+
+h1, h2, h3, h4, .current-period-title, .day-number, .index-tab, .btn, .calendar-page-stamp {
+  font-family: 'Fredoka', 'Quicksand', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ========================================================
+   RUANG MEJA & TATA LETAK
+   ======================================================== */
+.desk-room {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+.desk-surface {
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  gap: 1.75rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* ========================================================
+   BENTUK OBJEK: KALENDER MEJA DUDUK KARTUN (DESK CALENDAR)
+   ======================================================== */
+.desk-calendar-object {
+  flex: 1;
+  max-width: 1050px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Puncak Segitiga Dudukan Belakang */
+.stand-roof-ridge {
+  height: 16px;
+  background: var(--accent-leather);
+  border: var(--border-thick);
+  border-bottom: none;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  margin: 0 3.5rem;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.4);
+}
+
+/* Cincin Spiral Pengikat Halaman Kalender */
+.calendar-spiral-binder {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 4.5rem;
+  height: 30px;
+  position: relative;
+  z-index: 30;
+  margin-top: -12px;
+  margin-bottom: -16px;
+}
+
+.spiral-loop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.coil-ring {
+  width: 12px;
+  height: 32px;
+  background: linear-gradient(135deg, #ffffff 10%, #bdc3c7 40%, #7f8c8d 90%);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+  z-index: 35;
+}
+
+.coil-hole {
+  width: 14px;
+  height: 14px;
+  background: var(--ink);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  z-index: 25;
+}
+
+/* Tab Pembatas Kertas Kalender (Bulan / Minggu / Hari) */
+.calendar-index-tabs {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-right: 2rem;
+  position: relative;
+  z-index: 10;
+  margin-bottom: -4px;
+}
+
+.index-tab {
+  background: #f7ede2;
+  border: var(--border-thick);
+  border-bottom: none;
+  padding: 0.4rem 1.1rem 0.6rem;
+  border-radius: 12px 12px 0 0;
+  font-size: 0.95rem;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--shadow-cartoon-sm);
+  transition: all 0.15s ease;
+}
+
+.index-tab:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+}
+
+.index-tab.active {
+  background: var(--paper-cream);
+  color: var(--ink);
+  font-weight: 700;
+  padding-top: 0.55rem;
+  transform: translateY(-4px);
+  box-shadow: 2px -2px 0px var(--ink);
+}
+
+/* ========================================================
+   LEMBARAN KERTAS KALENDER (THE REAL CALENDAR PAGE)
+   ======================================================== */
+.calendar-paper-page {
+  background: var(--paper-cream);
+  border: var(--border-thick);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-cartoon-lg);
+  padding: 1.5rem 1.75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 15;
+  min-height: 620px;
+}
+
+/* Garis Kertas Halaman Kalender */
+.calendar-page-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: var(--border-thick);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.calendar-heading-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.calendar-page-stamp {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-leather);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.calendar-nav-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.current-period-title {
+  font-size: 1.85rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.btn-page-nav {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: var(--border-thick);
+  background: #ffffff;
+  box-shadow: var(--shadow-cartoon-sm);
+  font-size: 1.3rem;
+  font-family: inherit;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+}
+
+.btn-page-nav:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--ink);
+  background: #fff8eb;
+}
+
+.btn-page-nav:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--ink);
+}
+
+.calendar-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.btn-cartoon-sm {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-md);
+}
+
+.btn-priority-pill {
+  background: #fff4e0;
+}
+
+.btn-priority-pill:hover {
+  background: #ffe8be;
+}
+
+.kbd-badge {
+  background: var(--ink);
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 5px;
+  margin-right: 3px;
+}
+
+kbd {
+  background: #ffffff;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  box-shadow: 1px 1px 0px var(--ink);
+  font-size: 0.78rem;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-weight: 700;
+}
+
+/* ========================================================
+   KISI KALENDER BULANAN (MONTH GRID)
+   ======================================================== */
+.view-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.month-weekdays-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #fdf6ec;
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  padding: 0.55rem 0;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  box-shadow: var(--shadow-cartoon-sm);
+}
+
+.day-label {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+.day-label.sunday {
+  color: #c95a5a;
+}
+
+.day-label.saturday {
+  color: #6b8ea4;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  flex: 1;
+}
+
+/* Sel Kotak Kalender */
+.month-day-cell {
+  background: #ffffff;
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-cartoon-sm);
+  padding: 0.45rem 0.5rem;
+  min-height: 85px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  position: relative;
+}
+
+.month-day-cell:hover {
+  background: #fffcf0;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--ink);
+}
+
+.month-day-cell.other-month {
+  background: #f8f6f0;
+  opacity: 0.45;
+}
+
+.month-day-cell.today {
+  background: #fff9ea;
+  border-color: var(--ink);
+}
+
+.day-cell-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.day-number {
+  font-size: 1rem;
+  color: var(--ink);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.month-day-cell.today .day-number {
+  background: var(--ink);
+  color: #ffffff;
+  border: 1.5px solid var(--ink);
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+}
+
+.day-events-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  overflow: hidden;
+  flex: 1;
+}
+
+/* Chip Acara Kartun (Washi-tape style) */
+.event-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  box-shadow: 1.5px 1.5px 0px var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  user-select: none;
+}
+
+.event-chip:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+.event-chip-time {
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.event-chip-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.more-events-link {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  text-decoration: underline;
+  padding: 1px 2px;
+  cursor: pointer;
+}
+
+.more-events-link:hover {
+  color: var(--ink);
+}
+
+/* Kaki Halaman Kalender */
+.calendar-foot-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 2px dashed #e5dec9;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.calendar-model-label {
+  font-weight: 700;
+  color: var(--accent-leather);
+}
+
+/* Kaki Dudukan Kalender Meja (Stand Feet Base) */
+.calendar-stand-base {
+  height: 22px;
+  background: var(--accent-stand);
+  border: var(--border-thick);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  margin: 0 2rem;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.08);
+}
+
+/* ========================================================
+   TAMPILAN MINGGU & HARI
+   ======================================================== */
+.week-header-row {
+  display: flex;
+  border: var(--border-thick);
+  background: #fdf6ec;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  flex-shrink: 0;
+}
+
+.time-col-header {
+  width: 60px;
+  border-right: var(--border-thick);
+  font-size: 0.75rem;
+  font-family: 'Fredoka', sans-serif;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.week-day-col-header {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem 0;
+  border-right: var(--border-thick);
+}
+
+.week-day-col-header:last-child {
+  border-right: none;
+}
+
+.week-day-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+}
+
+.week-day-num {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 26px;
+  border-radius: 8px;
+}
+
+.week-day-col-header.today .week-day-num {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.week-scrollable-body, .day-scrollable-body {
+  display: flex;
+  max-height: 520px;
+  overflow-y: auto;
+  border: var(--border-thick);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  background: #ffffff;
+}
+
+.time-sidebar {
+  width: 60px;
+  border-right: var(--border-thick);
+  background: #fdf6ec;
+}
+
+.time-slot-label {
+  height: 52px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  text-align: right;
+  padding-right: 8px;
+  transform: translateY(-8px);
+}
+
+.week-days-columns {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.week-day-column, .day-single-column {
+  flex: 1;
+  border-right: 1.5px solid #ece4d8;
+  position: relative;
+  min-height: 1248px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 50px,
+    #ebdcc9 50px,
+    #ebdcc9 52px
+  );
+}
+
+.timed-event-block {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  border-radius: 8px;
+  padding: 4px 6px;
+  font-size: 0.78rem;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  box-shadow: 2px 2px 0px var(--ink);
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.day-view-header {
+  padding: 0.75rem 1rem;
+  border: var(--border-thick);
+  background: #fdf6ec;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+/* ========================================================
+   AKSESORIS MEJA: MEMO PAD & CATATAN TEMPEL
+   ======================================================== */
+.desk-accessory-panel {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Memo Tempel (Sticky Note) */
+.sticky-memo-note {
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-cartoon);
+  padding: 1.15rem 1rem 1rem;
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+.sticky-memo-note:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px var(--ink);
+}
+
+.note-yellow {
+  background: #fefae0;
+  transform: rotate(-0.5deg);
+}
+
+.note-orange {
+  background: #fff1e6;
+  transform: rotate(0.8deg);
+  cursor: pointer;
+}
+
+.note-green {
+  background: #e8f5e9;
+  transform: rotate(-0.6deg);
+}
+
+.note-blue {
+  background: #e8f0fe;
+  transform: rotate(0.4deg);
+}
+
+/* Selotip Washi Tape */
+.washi-tape {
+  width: 70px;
+  height: 20px;
+  background: rgba(230, 204, 178, 0.75);
+  border: 1px dashed var(--ink);
+  position: absolute;
+  top: -10px;
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+
+.tape-center { left: calc(50% - 35px); }
+.tape-left { left: 15px; transform: rotate(-4deg); }
+.tape-right { right: 15px; transform: rotate(5deg); }
+
+.memo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.memo-header h3, .memo-header h4 {
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.btn-big-create {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 0.75rem;
+}
+
+.memo-search-wrap input {
+  width: 100%;
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  padding: 0.55rem 0.8rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  font-weight: 600;
+  outline: none;
+  background: #ffffff;
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+.memo-text {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ink-muted);
+}
+
+/* Daftar Filter Kategori */
+.category-filter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.category-filter-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.6);
+  transition: all 0.1s ease;
+}
+
+.category-filter-item:hover {
+  background: #ffffff;
+  border-color: var(--ink);
+  box-shadow: 1.5px 1.5px 0px var(--ink);
+}
+
+.cat-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cat-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  border: 1.5px solid var(--ink);
+}
+
+.cat-count {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #ffffff;
+  border: 1px solid var(--ink);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+}
+
+.category-filter-item.inactive {
+  opacity: 0.35;
+  text-decoration: line-through;
+}
+
+.reminder-indicator {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: #e2f0d9;
+  border: 1px solid var(--ink);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+}
+
+.reminder-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 120px;
+  overflow-y: auto;
+  margin-bottom: 0.6rem;
+}
+
+.reminder-item {
+  padding: 0.4rem 0.6rem;
+  background: #ffffff;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  box-shadow: 1.5px 1.5px 0px var(--ink);
+  font-size: 0.78rem;
+}
+
+.empty-feed {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  padding: 0.3rem 0;
+}
+
+/* ========================================================
+   MODALS & PAPAN PRIORITAS SHORTCUT [P]
+   ======================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 48, 54, 0.45);
+  backdrop-filter: blur(3px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.modal-backdrop.active {
+  display: flex;
+}
+
+.cartoon-card {
+  background: var(--paper-cream);
+  border: var(--border-thick);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-cartoon-lg);
+  width: 100%;
+  max-width: 530px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: cartoonPopIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes cartoonPopIn {
+  from { opacity: 0; transform: scale(0.92) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: var(--border-thick);
+  background: #fdf6ec;
+}
+
+.modal-close-btn {
+  background: #ffffff;
+  border: var(--border-thick);
+  box-shadow: 2px 2px 0px var(--ink);
+  font-size: 1.4rem;
+  color: var(--ink);
+  cursor: pointer;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#event-form {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 600;
+  background: #ffffff;
+  outline: none;
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+.form-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.flex-1 { flex: 1; }
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: var(--border-thick);
+}
+
+/* Papan Prioritas Shortcut [P] */
+.priority-board-card {
+  max-width: 680px;
+}
+
+.priority-board-body {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.priority-instruction {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  background: #fdfaf2;
+  border: 1.5px dashed var(--ink);
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+}
+
+.priority-group-card {
+  border: var(--border-thick);
+  border-radius: var(--radius-lg);
+  padding: 0.85rem 1rem;
+  box-shadow: var(--shadow-cartoon-sm);
+}
+
+.priority-group-high { background: #fff8f7; border-color: #c95a5a; }
+.priority-group-medium { background: #fffdf5; border-color: #d69f64; }
+.priority-group-low { background: #f7faf7; border-color: #7fa988; }
+
+.priority-group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.priority-group-header h4 {
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.p-count {
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: #ffffff;
+  border: 1.5px solid var(--ink);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.priority-event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.priority-event-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-md);
+  padding: 0.55rem 0.85rem;
+  box-shadow: 2px 2px 0px var(--ink);
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.priority-event-item:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--ink);
+  background: #fffcee;
+}
+
+.empty-priority-list {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  padding: 0.35rem 0;
+}
+
+/* Tombol Kartun Umum */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Fredoka', 'Quicksand', sans-serif;
+  font-weight: 600;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-cartoon);
+  transition: all 0.1s ease;
+  background: #ffffff;
+  color: var(--ink);
+}
+
+.btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px var(--ink);
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--ink);
+}
+
+.btn-cartoon-primary {
+  background: var(--accent-primary);
+  color: #ffffff;
+}
+
+.btn-cartoon-primary:hover {
+  background: var(--accent-primary-hover);
+}
+
+.btn-cartoon-secondary {
+  background: #ffffff;
+}
+
+.btn-cartoon-danger {
+  background: #ffdad6;
+  color: #93000a;
+}
+
+.btn-icon-cartoon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  border: var(--border-thick);
+  background: #ffffff;
+  box-shadow: var(--shadow-cartoon-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.btn-full { width: 100%; }
+
+/* Toast */
+.toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  z-index: 200;
+  max-width: 380px;
+}
+
+.toast {
+  background: #ffffff;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-cartoon);
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.toast-alert { background: #fff8f7; }
+.toast-success { background: #f7faf7; }
+
+.toast-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* Responsif */
+@media (max-width: 1024px) {
+  .desk-surface {
+    flex-direction: column;
+    align-items: center;
+  }
+  .desk-calendar-object {
+    width: 100%;
+  }
+  .desk-accessory-panel {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .sticky-memo-note {
+    flex: 1;
+    min-width: 260px;
+  }
+}

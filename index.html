@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniCalendar - Kalender Meja Kartun</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Area Meja Kerja (Cozy Desk Surface) -->
+  <div class="desk-room">
+    <div class="desk-surface">
+
+      <!-- ==========================================
+           BENTUK UTAMA: KALENDER MEJA DUDUK KARTUN
+           ========================================== -->
+      <div class="desk-calendar-object">
+        
+        <!-- Dudukan Belakang Kalender (Triangular Stand Backing) -->
+        <div class="stand-roof-ridge"></div>
+
+        <!-- Cincin Spiral Pengikat Kertas Kalender -->
+        <div class="calendar-spiral-binder">
+          <div class="spiral-loop"><div class="coil-ring"></div><div class="coil-hole"></div></div>
+          <div class="spiral-loop"><div class="coil-ring"></div><div class="coil-hole"></div></div>
+          <div class="spiral-loop"><div class="coil-ring"></div><div class="coil-hole"></div></div>
+          <div class="spiral-loop"><div class="coil-ring"></div><div class="coil-hole"></div></div>
+          <div class="spiral-loop"><div class="coil-ring"></div><div class="coil-hole"></div></div>
+          <div class="spiral-loop"><div class="coil-ring"></div><div class="coil-hole"></div></div>
+          <div class="spiral-loop"><div class="coil-ring"></div><div class="coil-hole"></div></div>
+          <div class="spiral-loop"><div class="coil-ring"></div><div class="coil-hole"></div></div>
+          <div class="spiral-loop"><div class="coil-ring"></div><div class="coil-hole"></div></div>
+        </div>
+
+        <!-- Tab Pembatas Kertas Kalender (Index Tabs) -->
+        <div class="calendar-index-tabs">
+          <button class="index-tab active" data-view="month">📅 Bulan</button>
+          <button class="index-tab" data-view="week">🗓️ Minggu</button>
+          <button class="index-tab" data-view="day">📝 Hari</button>
+        </div>
+
+        <!-- LEMBARAN KERTAS KALENDER (The Real Calendar Page) -->
+        <div class="calendar-paper-page">
+          
+          <!-- Kepala Halaman Kalender (Month/Year Header) -->
+          <div class="calendar-page-top-bar">
+            <div class="calendar-heading-wrap">
+              <span class="calendar-page-stamp">KALENDER MEJA</span>
+              <div class="calendar-nav-title-group">
+                <button class="btn-page-nav" id="prev-period-btn" title="Bulan Sebelumnya">‹</button>
+                <h1 class="current-period-title" id="current-period-title">Januari 2026</h1>
+                <button class="btn-page-nav" id="next-period-btn" title="Bulan Berikutnya">›</button>
+              </div>
+            </div>
+
+            <div class="calendar-top-actions">
+              <button class="btn btn-cartoon-sm" id="today-btn">Hari Ini</button>
+              <button class="btn btn-cartoon-sm btn-priority-pill" id="shortcut-priority-btn" title="Tekan shortcut P untuk membuka papan prioritas">
+                <span class="kbd-badge">P</span> Prioritas
+              </button>
+              <button class="btn-icon-cartoon" id="notification-permission-btn" title="Pengingat Desktop">
+                🔔<span class="notification-dot" id="notification-dot"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TAMPILAN KALENDER: BULAN (Default) -->
+          <div class="view-container month-view" id="month-view">
+            <div class="month-weekdays-header">
+              <span class="day-label sunday">Minggu</span>
+              <span class="day-label">Senin</span>
+              <span class="day-label">Selasa</span>
+              <span class="day-label">Rabu</span>
+              <span class="day-label">Kamis</span>
+              <span class="day-label">Jumat</span>
+              <span class="day-label saturday">Sabtu</span>
+            </div>
+            <div class="month-grid" id="month-grid">
+              <!-- Sel Kalender 7x5 atau 7x6 akan diisi otomatis -->
+            </div>
+          </div>
+
+          <!-- TAMPILAN KALENDER: MINGGU -->
+          <div class="view-container week-view" id="week-view" style="display: none;">
+            <div class="week-header-row" id="week-header-row">
+              <div class="time-col-header">Jam</div>
+            </div>
+            <div class="week-scrollable-body" id="week-scrollable-body">
+              <div class="time-sidebar" id="time-sidebar"></div>
+              <div class="week-days-columns" id="week-days-columns"></div>
+            </div>
+          </div>
+
+          <!-- TAMPILAN KALENDER: HARI -->
+          <div class="view-container day-view" id="day-view" style="display: none;">
+            <div class="day-view-header" id="day-view-header"></div>
+            <div class="day-scrollable-body" id="day-scrollable-body">
+              <div class="time-sidebar" id="day-time-sidebar"></div>
+              <div class="day-single-column" id="day-single-column"></div>
+            </div>
+          </div>
+
+          <!-- Kaki Lipatan Dudukan Kalender Meja -->
+          <div class="calendar-foot-bar">
+            <span class="calendar-model-label">OmniCalendar • Meja Belajar Kartun</span>
+            <span class="calendar-hint">💡 Klik kotak tanggal untuk menambah acara • Tekan <kbd>P</kbd> untuk urutan prioritas</span>
+          </div>
+        </div>
+
+        <!-- Kaki Dudukan Kalender Meja Kartun -->
+        <div class="calendar-stand-base"></div>
+      </div>
+
+
+      <!-- ==========================================
+           AKSESORIS MEJA: MEMO PAD & CATATAN TEMPEL
+           ========================================== -->
+      <aside class="desk-accessory-panel">
+        
+        <!-- Memo Pad Tempel Kuning untuk Acara Baru -->
+        <div class="sticky-memo-note note-yellow">
+          <div class="washi-tape tape-center"></div>
+          <div class="memo-header">
+            <h3>✏️ Agenda & Acara</h3>
+          </div>
+          <button class="btn btn-cartoon-primary btn-big-create" id="open-create-modal-btn">
+            <span>＋ Tambah Acara</span>
+          </button>
+          
+          <div class="memo-search-wrap">
+            <input type="text" id="event-search-input" placeholder="🔍 Cari acara di kalender...">
+            <button class="search-clear-btn" id="search-clear-btn" style="display:none;">&times;</button>
+          </div>
+        </div>
+
+        <!-- Kartu Pengingat Shortcut Prioritas -->
+        <div class="sticky-memo-note note-orange" id="sidebar-priority-card" title="Klik untuk membuka urutan prioritas">
+          <div class="washi-tape tape-left"></div>
+          <div class="memo-header">
+            <h4>⚡ Urutan Prioritas</h4>
+            <span class="kbd-badge">P</span>
+          </div>
+          <p class="memo-text">Tekan tombol <kbd>P</kbd> kapan saja untuk melihat seluruh tugas yang diurutkan dari <strong>Tinggi</strong>, <strong>Sedang</strong>, hingga <strong>Rendah</strong>.</p>
+        </div>
+
+        <!-- Memo Tempel Kategori Warna -->
+        <div class="sticky-memo-note note-green">
+          <div class="washi-tape tape-right"></div>
+          <div class="memo-header">
+            <h4>🏷️ Kategori</h4>
+            <button class="btn-link" id="select-all-cats">Semua</button>
+          </div>
+          <div class="category-filter-list" id="category-filter-list">
+            <!-- Diisi otomatis -->
+          </div>
+        </div>
+
+        <!-- Memo Pengingat Alarm Mendatang -->
+        <div class="sticky-memo-note note-blue">
+          <div class="memo-header">
+            <h4>⏰ Pengingat Dekat</h4>
+            <span class="reminder-indicator" id="reminder-indicator">Aktif</span>
+          </div>
+          <div class="reminder-feed" id="reminder-feed">
+            <div class="empty-feed">Belum ada alarm dekat ✨</div>
+          </div>
+          
+          <div class="memo-footer-btn">
+            <button class="btn btn-cartoon-secondary btn-full btn-sm" id="export-import-btn">
+              💾 Cadangan Data
+            </button>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- MODAL: FORMULIR TAMBAH / UBAH ACARA -->
+  <div class="modal-backdrop" id="event-modal-backdrop">
+    <div class="modal-card cartoon-card">
+      <div class="modal-header">
+        <h3 id="modal-title">✏️ Tambah Acara Baru</h3>
+        <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+      </div>
+      <form id="event-form">
+        <input type="hidden" id="event-id">
+
+        <div class="form-group">
+          <label for="event-title">Judul Acara *</label>
+          <input type="text" id="event-title" required placeholder="cth. Rapat Proyek & Diskusi Tim" autofocus>
+        </div>
+
+        <div class="form-row-checkbox">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="event-all-day">
+            <span class="checkmark"></span>
+            Acara Sepanjang Hari
+          </label>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="event-start-date">Tanggal Mulai *</label>
+            <input type="date" id="event-start-date" required>
+          </div>
+          <div class="form-group flex-1" id="start-time-group">
+            <label for="event-start-time">Waktu Mulai</label>
+            <input type="time" id="event-start-time" value="09:00">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="event-end-date">Tanggal Selesai *</label>
+            <input type="date" id="event-end-date" required>
+          </div>
+          <div class="form-group flex-1" id="end-time-group">
+            <label for="event-end-time">Waktu Selesai</label>
+            <input type="time" id="event-end-time" value="10:00">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="event-category">Kategori & Label</label>
+            <select id="event-category"></select>
+          </div>
+          <div class="form-group flex-1">
+            <label for="event-priority">Tingkat Prioritas</label>
+            <select id="event-priority">
+              <option value="low">🟢 Prioritas Rendah</option>
+              <option value="medium" selected>🟡 Prioritas Sedang</option>
+              <option value="high">🔴 Prioritas Tinggi</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="event-recurrence">Pengulangan Rutin</label>
+            <select id="event-recurrence">
+              <option value="none">Tidak berulang</option>
+              <option value="daily">Setiap hari</option>
+              <option value="weekly">Setiap minggu</option>
+              <option value="monthly">Setiap bulan</option>
+              <option value="yearly">Setiap tahun</option>
+            </select>
+          </div>
+          <div class="form-group flex-1">
+            <label for="event-reminder">Pengingat / Alarm</label>
+            <select id="event-reminder">
+              <option value="none">Tanpa pengingat</option>
+              <option value="0">Tepat saat acara dimulai</option>
+              <option value="5" selected>5 menit sebelumnya</option>
+              <option value="15">15 menit sebelumnya</option>
+              <option value="30">30 menit sebelumnya</option>
+              <option value="60">1 jam sebelumnya</option>
+              <option value="1440">1 hari sebelumnya</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="event-description">Catatan Tambahan</label>
+          <textarea id="event-description" rows="3" placeholder="Tuliskan catatan, lokasi, agenda atau link penting..."></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cartoon-danger" id="delete-event-btn" style="display:none;">Hapus</button>
+          <div class="modal-actions-right">
+            <button type="button" class="btn btn-cartoon-secondary" id="modal-cancel-btn">Batal</button>
+            <button type="submit" class="btn btn-cartoon-primary" id="save-event-btn">Simpan Acara</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL KHUSUS: PAPAN URUTAN PRIORITAS (MUNCUL HANYA SAAT SHORTCUT [P] DITEKAN) -->
+  <div class="modal-backdrop" id="priority-board-backdrop">
+    <div class="modal-card cartoon-card priority-board-card">
+      <div class="modal-header">
+        <div class="priority-header-title-wrap">
+          <span class="sticker-badge">Shortcut [P]</span>
+          <h3>⚡ Papan Urutan Prioritas</h3>
+        </div>
+        <button class="modal-close-btn" id="priority-close-btn">&times;</button>
+      </div>
+      <div class="priority-board-body">
+        <div class="priority-instruction">
+          Daftar seluruh acara kalender yang diurutkan berdasarkan <strong>Prioritas Tinggi</strong>, <strong>Sedang</strong>, hingga <strong>Rendah</strong>. Klik acara untuk mengeditnya.
+        </div>
+
+        <!-- Prioritas Tinggi -->
+        <div class="priority-group-card priority-group-high">
+          <div class="priority-group-header">
+            <span class="p-dot dot-high">🔴</span>
+            <h4>Prioritas Tinggi (Mendesak & Penting)</h4>
+            <span class="p-count" id="count-high">0</span>
+          </div>
+          <div class="priority-event-list" id="list-high"></div>
+        </div>
+
+        <!-- Prioritas Sedang -->
+        <div class="priority-group-card priority-group-medium">
+          <div class="priority-group-header">
+            <span class="p-dot dot-medium">🟡</span>
+            <h4>Prioritas Sedang (Penting Berkala)</h4>
+            <span class="p-count" id="count-medium">0</span>
+          </div>
+          <div class="priority-event-list" id="list-medium"></div>
+        </div>
+
+        <!-- Prioritas Rendah -->
+        <div class="priority-group-card priority-group-low">
+          <div class="priority-group-header">
+            <span class="p-dot dot-low">🟢</span>
+            <h4>Prioritas Rendah (Santai / Fleksibel)</h4>
+            <span class="p-count" id="count-low">0</span>
+          </div>
+          <div class="priority-event-list" id="list-low"></div>
+        </div>
+      </div>
+      <div class="modal-footer priority-footer">
+        <small class="text-muted">Tekan tombol <kbd>P</kbd> atau <kbd>Esc</kbd> untuk menutup papan ini.</small>
+        <button type="button" class="btn btn-cartoon-secondary" id="priority-dismiss-btn">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CADANGAN & DATA -->
+  <div class="modal-backdrop" id="data-modal-backdrop">
+    <div class="modal-card cartoon-card">
+      <div class="modal-header">
+        <h3>💾 Cadangan Data Kalender</h3>
+        <button class="modal-close-btn" id="data-modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body data-modal-body">
+        <p class="text-muted">Semua jadwal disimpan otomatis di penyimpanan lokal browser Anda. Anda bisa mengunduh atau mengunggah data JSON kapan saja.</p>
+        
+        <div class="data-action-card">
+          <div class="data-action-info">
+            <strong>Ekspor Data Acara</strong>
+            <small>Unduh semua jadwal kalender ke berkas JSON.</small>
+          </div>
+          <button class="btn btn-cartoon-secondary" id="download-backup-btn">Ekspor JSON</button>
+        </div>
+
+        <div class="data-action-card">
+          <div class="data-action-info">
+            <strong>Impor Data Acara</strong>
+            <small>Muat berkas cadangan JSON yang telah disimpan sebelumnya.</small>
+          </div>
+          <label class="btn btn-cartoon-secondary">
+            Pilih Berkas
+            <input type="file" id="import-json-input" accept=".json" style="display: none;">
+          </label>
+        </div>
+
+        <div class="data-action-card">
+          <div class="data-action-info">
+            <strong>Muat Contoh Acara (Demo)</strong>
+            <small>Isi kalender dengan acara contoh yang realistis.</small>
+          </div>
+          <button class="btn btn-cartoon-secondary" id="load-sample-btn">Muat Demo</button>
+        </div>
+
+        <div class="data-action-card danger-card">
+          <div class="data-action-info">
+            <strong>Kosongkan Kalender</strong>
+            <small>Hapus seluruh acara dari penyimpanan browser.</small>
+          </div>
+          <button class="btn btn-cartoon-danger" id="wipe-data-btn">Reset Kalender</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notifikasi Toast Kartun -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
